@@ -48,3 +48,8 @@ export const PaystackWebhookEvents = {
         reversed: 'transfer.reversed',
     }
 }
+
+export enum TransactionType {
+    credit = 'credit',
+    debit = 'debit'
+}

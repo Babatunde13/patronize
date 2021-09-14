@@ -35,5 +35,4 @@ jobs:
         databaseURL: ""
         PORT: 3000
       run: |
-        npm install
         npm test

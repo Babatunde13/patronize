@@ -4,14 +4,32 @@ import sequelize from './connect'
 class User extends Model {}
 
 User.init({
-  username: DataTypes.STRING,
-  birthday: DataTypes.DATE,
-  firstName: DataTypes.STRING,
-  lastName: DataTypes.STRING,
-  email: DataTypes.STRING(100),
-  gender: DataTypes.ENUM('female', 'male')
+  firstName: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  lastName: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  email: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    unique: true
+  },
+  password: DataTypes.STRING,
+  availableBalance: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    defaultValue: '0'
+  },
+  ledgerBalance: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    defaultValue: '0'
+  }
 }, 
-{ sequelize, modelName: 'user' }
+{ sequelize, modelName: 'users', updatedAt: true, createdAt: true  }
 )
 
 export default User
