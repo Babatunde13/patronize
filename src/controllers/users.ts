@@ -1,7 +1,7 @@
-import { createUser as createUserHelper } from './../utils/user.models.helpers'
+import { Model } from 'sequelize'
 import { Request, Response } from 'express'
 import { ResponseFormat } from '../utils/types'
-import User from '../models/user'
+import { createUser as createUserHelper } from './../utils/user.models.helpers'
 
 export const getAuthenticatedUser = (req: Request, res: Response): void => {
 	console.log(req)
@@ -16,21 +16,20 @@ export const getAuthenticatedUser = (req: Request, res: Response): void => {
 }
 
 
-export const createUser = (req: Request, res: Response): void => {
+export const createUser = (req: Request, res: Response): Response => {
 	console.log(req, res)
-	let user
-	createUserHelper({
+	const user = createUserHelper({
 		email: '',
 		password: '',
 		firstName: '',
 		lastName: ''
-	}).then(res => { user = res.toJSON() })
-	const response: ResponseFormat<User> = {
+	})
+	const response: ResponseFormat<Promise<Model>> = {
 		data: user,
 		message: 'Successfully fetched user',
 		status: 'ok',
 		errors: ''
 
 	}
-	res.status(201).json(response) 
+	return res.status(201).json(response) 
 }

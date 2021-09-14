@@ -3,7 +3,11 @@ import sequelize from './connect'
 import { TransactionType } from '../utils/types'
 
 const Transactions = sequelize.define('', {
-  referenceId: DataTypes.UUIDV4,
+  referenceId: {
+    type: DataTypes.UUIDV4,
+    unique: true,
+    allowNull: false
+  },
   name: {
     type: DataTypes.STRING,
     allowNull: false

@@ -5,16 +5,6 @@ export interface ResponseFormat<T> {
     errors: string | null
 }
 
-export interface UserInterface {
-    email: string,
-    birthday?: string,
-    firstName?: string,
-    lastName?: string,
-    gender?: string,
-    password: string
-}
-
-
 export const PaystackWebhookEvents = {
     charge: {
         dispute: {
@@ -52,4 +42,42 @@ export const PaystackWebhookEvents = {
 export enum TransactionType {
     credit = 'credit',
     debit = 'debit'
+}
+
+export interface TransactionInterface {
+    id: string,
+    name: string,
+    type: 'credit' | 'debit',
+    referenceId: string,
+    user: UserInterface
+}
+
+export interface BankInterface {
+    id: string,
+    accountName: string,
+    accountNumber: string,
+    bankName: string,
+    user: UserInterface
+}
+
+export interface CardInterface {
+    id: string,
+    cardNumber: string,
+    expiryMonth: string,
+    expiryYear: string,
+    CVV: string,
+    user: UserInterface
+}
+
+export interface UserInterface {
+    id?: string,
+    firstName: string,
+    lastName: string,
+    email: string,
+    password: string,
+    availableBalance?: number,
+    ledgerBalance?: number,
+    banks?: BankInterface[],
+    transactions?: TransactionInterface[],
+    cards?: CardInterface[],
 }
