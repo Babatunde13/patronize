@@ -1,5 +1,5 @@
 import express, { Application } from 'express'
-import { infoLogger } from './src/utils/logger'
+import { infoLogger, errorLogger } from './src/utils/logger'
 import routes from './src/routes'
 import envs from './src/utils/envs'
 import sequelize from './src/models/connect'
@@ -10,9 +10,9 @@ const PORT = envs.envs.PORT || 5000
 // add app configurations here
 sequelize.authenticate()
     .then(() => {
-        console.log('Connection has been established successfully.')
+        infoLogger('Connection has been established successfully.')
     }).catch ((error) => {
-        console.error('Unable to connect to the database:', error)
+        errorLogger(`Unable to connect to the database:, ${error}`)
     })
 
 // add middlewares here
