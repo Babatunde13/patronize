@@ -17,6 +17,13 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    # environment variables
+    - name: Add environment variables
+      env:
+        databaseURL: ""
+        PORT: 3000
+
+
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
