@@ -1,4 +1,4 @@
-import { hashPassword , verifyPassword} from './password'
+import { hashPassword } from './password'
 import User from '../models/user'
 import { UserInterface } from './types'
 

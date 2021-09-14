@@ -1,7 +1,7 @@
-import { createUser as createUserHelper } from './../utils/user.models.helpers';
+import { createUser as createUserHelper } from './../utils/user.models.helpers'
 import { Request, Response } from 'express'
 import { ResponseFormat } from '../utils/types'
-import User from '../models/user';
+import User from '../models/user'
 
 export const getAuthenticatedUser = (req: Request, res: Response): void => {
 	console.log(req)
@@ -16,14 +16,15 @@ export const getAuthenticatedUser = (req: Request, res: Response): void => {
 }
 
 
-export const createUser = async (req: Request, res: Response): void => {
+export const createUser = (req: Request, res: Response): void => {
 	console.log(req, res)
-	const user = await createUserHelper({
+	let user
+	createUserHelper({
 		email: '',
 		password: '',
 		firstName: '',
 		lastName: ''
-	})
+	}).then(res => { user = res.toJSON() })
 	const response: ResponseFormat<User> = {
 		data: user,
 		message: 'Successfully fetched user',

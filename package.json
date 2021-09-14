@@ -4,7 +4,7 @@
   "description": "A fintech application",
   "main": "app.ts",
   "scripts": {
-    "test": "mocha dist/**.spec.js",
+    "test": "mocha dist/**/*.spec.js",
     "build": "tsc --watch",
     "lint": "eslint src/",
     "dev": "nodemon ./dist/app.js",
@@ -19,8 +19,11 @@
   "author": "Babatunde Koiki",
   "license": "ISC",
   "devDependencies": {
+    "@types/chai": "^4.2.21",
+    "@types/mocha": "^9.0.0",
     "@typescript-eslint/eslint-plugin": "^4.31.1",
     "@typescript-eslint/parser": "^4.31.1",
+    "chai": "^4.3.4",
     "eslint": "^7.32.0",
     "mocha": "^9.1.1",
     "nodemon": "^2.0.12",
