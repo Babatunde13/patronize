@@ -1,14 +1,12 @@
-import { Model, DataTypes } from 'sequelize'
+import { DataTypes } from 'sequelize'
 import sequelize from './connect'
 
-class Banks extends Model {}
-
-Banks.init({
+const Banks = sequelize.define('banks', {
   accountName: DataTypes.STRING,
   bankName: DataTypes.STRING,
   accountNumber: DataTypes.STRING
 }, 
-{ sequelize, modelName: 'banks', updatedAt: true, createdAt: true  }
+{ updatedAt: true, createdAt: true  }
 )
 
 export default Banks

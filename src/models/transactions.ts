@@ -1,10 +1,8 @@
-import { Model, DataTypes } from 'sequelize'
+import { DataTypes } from 'sequelize'
 import sequelize from './connect'
 import { TransactionType } from '../utils/types'
 
-class Transactions extends Model {}
-
-Transactions.init({
+const Transactions = sequelize.define('', {
   referenceId: DataTypes.UUIDV4,
   name: {
     type: DataTypes.STRING,
@@ -17,7 +15,7 @@ Transactions.init({
     allowNull: false,
   },
 }, 
-{ sequelize, modelName: 'transactions', updatedAt: true, createdAt: true  }
+{updatedAt: true, createdAt: true }
 )
 
 export default Transactions

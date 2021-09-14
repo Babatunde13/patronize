@@ -1,9 +1,7 @@
-import { Model, DataTypes } from 'sequelize'
+import { DataTypes } from 'sequelize'
 import sequelize from './connect'
 
-class User extends Model {}
-
-User.init({
+const User = sequelize.define('user', {
   firstName: {
     type: DataTypes.STRING,
     allowNull: false
@@ -29,7 +27,7 @@ User.init({
     defaultValue: '0'
   }
 }, 
-{ sequelize, modelName: 'users', updatedAt: true, createdAt: true  }
+{ modelName: 'users', updatedAt: true, createdAt: true  }
 )
 
 export default User
