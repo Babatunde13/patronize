@@ -21,8 +21,12 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-
-    - name: test
+  
+    - name: installl dependencies
+      run: |
+        npm install
+    
+    - name: test files
       run: |
         npm install
         npm test
