@@ -25,6 +25,10 @@ jobs:
     - name: installl dependencies
       run: |
         npm install
+
+    - name: build files
+      run: |
+        npm run build
     
     - name: test files
       run: |
