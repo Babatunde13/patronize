@@ -1,7 +1,7 @@
 import { Model } from 'sequelize'
 import { hashPassword } from './password'
-import User from '../models/user'
 import { UserInterface } from './types'
+import User from '../models/user'
 
 export const createUser = async (data: UserInterface): Promise<Model> => {
     data.password = hashPassword(data.password)
@@ -14,17 +14,17 @@ export const createUser = async (data: UserInterface): Promise<Model> => {
     return user
 }
 
-export const createPaystackCustomer = async (email: string): Promise<any> => {
+export const createPaystackCustomer = async (email: string): Promise<UserInterface> => {
     console.log(email)
     return 
 }
 
-export const findUserById = (id: number): Promise<Model> | null => {
-    const user = User.findOne({where: {id}, rejectOnEmpty: false})
-    return user
+export const findUserById = async (id: number): Promise<Model> => {
+    const user = await User.findOne({where: {id}, rejectOnEmpty: false})
+    return user.toJSON() as Model
 }
 
-export const findUserByEmail = (email: string): Promise<Model> | null => {
-    const user = User.findOne({where: {email}, rejectOnEmpty: false})
-    return user
+export const findUserByEmail = async (email: string): Promise<Model> => {
+    const user = await User.findOne({where: {email}, rejectOnEmpty: false})
+    return user.toJSON() as Model
 }
