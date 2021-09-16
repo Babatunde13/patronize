@@ -8,7 +8,8 @@
     "build": "tsc ",
     "lint": "eslint src/",
     "dev": "nodemon ./dist/app.js",
-    "start": "node ./dist/app.js"
+    "start": "node ./dist/app.js",
+    "prepare": "husky install"
   },
   "keywords": [
     "node js",
@@ -25,6 +26,7 @@
     "@typescript-eslint/parser": "^4.31.1",
     "chai": "^4.3.4",
     "eslint": "^7.32.0",
+    "husky": "^7.0.2",
     "mocha": "^9.1.1",
     "nodemon": "^2.0.12",
     "typescript": "^4.4.3"
