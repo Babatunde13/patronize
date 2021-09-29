@@ -1,10 +1,11 @@
+import { Model } from 'sequelize'
 import { hashPassword } from './password'
-import User from '../models/user'
 import { UserInterface } from './types'
+import User from '../models/user'
 
-export const createUser = (data: UserInterface): Promise<User> => {
+export const createUser = async (data: UserInterface): Promise<Model> => {
     data.password = hashPassword(data.password)
-    const user = User.create({
+    const user = await User.create({
         email:data.email,
         password: data.password,
         firstName: data.firstName,
@@ -13,12 +14,17 @@ export const createUser = (data: UserInterface): Promise<User> => {
     return user
 }
 
-export const findUserById = (id: number): Promise<User> | null => {
-    const user = User.findOne({where: {id}, rejectOnEmpty: false})
-    return user
+export const createPaystackCustomer = async (email: string): Promise<UserInterface> => {
+    console.log(email)
+    return 
 }
 
-export const findUserByEmail = (email: string): Promise<User> | null => {
-    const user = User.findOne({where: {email}, rejectOnEmpty: false})
-    return user
+export const findUserById = async (id: number): Promise<Model> => {
+    const user = await User.findOne({where: {id}, rejectOnEmpty: false})
+    return user.toJSON() as Model
+}
+
+export const findUserByEmail = async (email: string): Promise<Model> => {
+    const user = await User.findOne({where: {email}, rejectOnEmpty: false})
+    return user.toJSON() as Model
 }

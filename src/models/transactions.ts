@@ -1,13 +1,25 @@
-import { Model, DataTypes } from 'sequelize'
+import { DataTypes } from 'sequelize'
 import sequelize from './connect'
+import { TransactionType } from '../utils/types'
 
-class Transactions extends Model {}
-
-Transactions.init({
-  title: DataTypes.STRING,
-  user: DataTypes.STRING
+const Transactions = sequelize.define('', {
+  referenceId: {
+    type: DataTypes.UUIDV4,
+    unique: true,
+    allowNull: false
+  },
+  name: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  type: {
+    type: DataTypes.ENUM({
+      values: [TransactionType.credit,  TransactionType.debit]
+    }),
+    allowNull: false,
+  },
 }, 
-{ sequelize, modelName: 'transaction' }
+{updatedAt: true, createdAt: true }
 )
 
 export default Transactions
